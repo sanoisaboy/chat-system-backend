@@ -17,3 +17,14 @@ def login():
         else:
             return 'Login failed',404
 
+def signup():
+    if request.method =='POST':
+        username = request.form['username']
+        password = request.form['password']
+        print(username)
+        exit_user = collection.find_one({"name":username})
+        if exit_user is None:
+            collection.insert_one({"name":username,"password":password})
+            return 'Sign up successful',200
+        else:
+            return 'Sign up failed',404

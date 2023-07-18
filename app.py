@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 from pymongo.mongo_client import MongoClient
-from auth import login 
+from auth import login,signup 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -9,6 +9,8 @@ socketio = SocketIO(app)
 
 
 app.route('/login', methods=['GET', 'POST'])(login)
+
+app.route('/signup',methods=['POST'])(signup)
 
 
 @socketio.on('message')
