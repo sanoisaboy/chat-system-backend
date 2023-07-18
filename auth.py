@@ -1,12 +1,19 @@
-from flask import request, session, abort
+from flask import request, session
+from mongodb import db
 
-def login():
+collection = db['User']
+
+
+
+def login(): 
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
+        user_document = collection.find_one({})
+        print(user_document)    
         if username == 'admin' and password == 'password':
             session['username'] = username
-            abort(200)
+            return 'Login successful',200
         else:
-            abort(404)
+            return 'Login failed',404
+
