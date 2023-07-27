@@ -4,7 +4,6 @@ from mongodb import db
 collection = db['User']
 
 
-
 def login(): 
     if request.method == 'POST':
         username = request.form['username']
@@ -17,6 +16,7 @@ def login():
         else:
             return 'Login failed',404
 
+
 def signup():
     if request.method =='POST':
         username = request.form['username']
@@ -28,3 +28,4 @@ def signup():
             return 'Sign up successful',200
         else:
             return 'Sign up failed',404
+        
