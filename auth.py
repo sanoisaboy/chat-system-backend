@@ -1,5 +1,5 @@
 from flask import request, session
-from mongodb import db
+from db import db
 
 collection = db['User']
 
