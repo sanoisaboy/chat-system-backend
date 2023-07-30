@@ -1,9 +1,11 @@
-from flask import request, session
+from flask import request, Blueprint, session
 from db import db
 
 collection = db['User']
+auth_bp = Blueprint('auth', __name__)
 
 
+@auth_bp.route('/login', methods=['GET', 'POST'])
 def login(): 
     if request.method == 'POST':
         username = request.form['username']
@@ -17,6 +19,7 @@ def login():
             return 'Login failed',404
 
 
+@auth_bp.route('/sign', methods=['POST'])
 def signup():
     if request.method =='POST':
         username = request.form['username']
